@@ -1,7 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../models/climate.dart';
+import '../../data/models/climate.dart';
+
 
 class ClimateChart extends StatelessWidget {
   final List<ClimateData> data;

@@ -1,7 +1,8 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../models/climate.dart';
+import '../../data/models/climate.dart';
+
 
 class ClimateBarChart extends StatelessWidget {
   final List<ClimateData> data;
@@ -46,7 +47,7 @@ print("data.length: ${data.length}");
       List<BarChartRodData> rods = [];
       for (int j = 0; j < data[i].monthlyValues.length; j++) {
         rods.add(BarChartRodData(
-          toY: data[i].monthlyValues[j],
+          toY: data[i].monthlyValues[j].toDouble(),
           color: Colors.blue,
           width: 5,
         ));

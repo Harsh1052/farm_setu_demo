@@ -1,33 +1,50 @@
+import 'package:farm_setu_demo/dependencies_ijection.dart';
+import 'package:farm_setu_demo/features/weather_chart/data/models/climate.dart';
+import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
+import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_events.dart';
+import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_state.dart';
 import 'package:farm_setu_demo/models/climate_table_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-
-import '../providers/weather_provider.dart';
 
 class TableViewScreen extends StatelessWidget {
   const TableViewScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => WeatherProvider()..loadClimateDataForTableForUK(),
+    return BlocProvider(
+        create: (context) => getIt<ClimateChartBloc>()..add(FetchClimateData('https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Tmax/date/England.txt',true)),
         child: Scaffold(
           appBar: AppBar(title: const Text('UK Climate Data')),
-          body: Consumer<WeatherProvider>(
-            builder: (context, provider, _) {
-              if (provider.climateTableData.isEmpty) {
-                return const Center(child: CircularProgressIndicator());
+          body: BlocBuilder<ClimateChartBloc,ClimateChartState>(
+            builder: (context, state) {
+              if(state is ClimateLoading){
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
               }
-              return SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: DataTable(
-                    columns: _buildColumns(),
-                    rows: _buildRows(provider.climateTableData),
+              if(state is ClimateLoaded){
+                return SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      columns: _buildColumns(),
+                      rows: _buildRows(state.climateData),
+                    ),
                   ),
-                ),
+                );
+              }
+              if(state is ClimateError){
+                return Center(
+                  child: Text(state.message),
+                );
+              }
+              return Center(
+                child: Text('No Data'),
               );
+
             },
           ),
         ));
@@ -82,7 +99,7 @@ class TableViewScreen extends StatelessWidget {
     }
   }
 
-  List<DataRow> _buildRows(List<ClimateTableData> data) {
+  List<DataRow> _buildRows(List<ClimateData> data) {
     return data.map((climateData) {
       debugPrint(climateData.monthlyValues.length.toString());
 
