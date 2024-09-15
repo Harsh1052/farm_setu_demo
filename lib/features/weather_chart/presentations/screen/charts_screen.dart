@@ -1,16 +1,13 @@
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_state.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 import '../../../../dependencies_ijection.dart';
 import '../../data/models/climate.dart';
 import '../bloc/climate_chart_events.dart';
 import '../custom_widgets/bar_chart.dart';
 import '../custom_widgets/climate_chart_widget.dart';
-import '../providers/weather_provider.dart';
 
 class ClimateDataPage extends StatelessWidget {
   const ClimateDataPage({super.key});

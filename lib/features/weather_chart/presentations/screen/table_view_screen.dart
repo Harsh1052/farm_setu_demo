@@ -3,10 +3,9 @@ import 'package:farm_setu_demo/features/weather_chart/data/models/climate.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_events.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_state.dart';
-import 'package:farm_setu_demo/models/climate_table_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
+
 
 class TableViewScreen extends StatelessWidget {
   const TableViewScreen({super.key});
