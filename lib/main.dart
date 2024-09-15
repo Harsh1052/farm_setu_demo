@@ -1,7 +1,7 @@
 import 'package:farm_setu_demo/features/weather_chart/presentations/screen/charts_screen.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/screen/table_view_screen.dart';
 import 'package:flutter/material.dart';
-import 'dependencies_ijection.dart' as di;
+import 'dependencies_injection.dart' as di;
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

@@ -3,7 +3,7 @@ import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../dependencies_ijection.dart';
+import '../../../../dependencies_injection.dart';
 import '../../data/models/climate.dart';
 import '../bloc/climate_chart_events.dart';
 import '../custom_widgets/bar_chart.dart';

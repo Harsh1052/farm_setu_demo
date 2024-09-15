@@ -1,4 +1,4 @@
-import 'package:farm_setu_demo/dependencies_ijection.dart';
+import 'package:farm_setu_demo/dependencies_injection.dart';
 import 'package:farm_setu_demo/features/weather_chart/data/models/climate.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_events.dart';
