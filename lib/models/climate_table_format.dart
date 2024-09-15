@@ -1,6 +1,6 @@
 class ClimateTableData {
   final String year;
-  final List<double> monthlyValues;
+  final List<num> monthlyValues;
 
   ClimateTableData({required this.year, required this.monthlyValues});
 }
