@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:farm_setu_demo/dependencies_injection.dart';
 import 'package:farm_setu_demo/features/weather_chart/data/models/climate.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
+@RoutePage()
 class TableViewScreen extends StatelessWidget {
   const TableViewScreen({super.key});
 
@@ -100,7 +102,7 @@ class TableViewScreen extends StatelessWidget {
 
   List<DataRow> _buildRows(List<ClimateData> data) {
     return data.map((climateData) {
-      debugPrint(climateData.monthlyValues.length.toString());
+
 
       return DataRow(cells: [
         DataCell(Text(climateData.year)),
