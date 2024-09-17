@@ -1,10 +1,12 @@
 import 'package:farm_setu_demo/dependencies_injection.dart';
-import 'package:farm_setu_demo/features/weather_chart/data/models/climate.dart';
+import 'package:farm_setu_demo/features/weather_chart/domain/entities/climate.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_events.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 
 class TableViewScreen extends StatelessWidget {
@@ -12,6 +14,13 @@ class TableViewScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(ResponsiveBreakpoints.of(context).largerThan(MOBILE)==false){
+// Make screen horizontal
+      SystemChrome.setPreferredOrientations([
+        DeviceOrientation.landscapeRight,
+        DeviceOrientation.landscapeLeft,
+      ]);
+    }
     return BlocProvider(
         create: (context) => getIt<ClimateChartBloc>()..add(FetchClimateData('https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Tmax/date/England.txt',true)),
         child: Scaffold(

@@ -1,10 +1,12 @@
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../../dependencies_injection.dart';
-import '../../data/models/climate.dart';
+import '../../domain/entities/climate.dart';
 import '../bloc/climate_chart_events.dart';
 import '../custom_widgets/bar_chart.dart';
 import '../custom_widgets/climate_chart_widget.dart';
@@ -15,6 +17,13 @@ class ClimateDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    if(ResponsiveBreakpoints.of(context).largerThan(MOBILE)==false){
+// Make screen horizontal
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
+    }
 
     return BlocProvider(
       create: (context) => getIt<ClimateChartBloc>()..add(FetchClimateData('https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Tmax/date/UK.txt',false)),

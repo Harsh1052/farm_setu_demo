@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/climate.dart';
+import '../../domain/entities/climate.dart';
 
 
 class ClimateBarChart extends StatelessWidget {

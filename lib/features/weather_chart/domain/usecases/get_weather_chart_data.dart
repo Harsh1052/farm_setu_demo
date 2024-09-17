@@ -1,5 +1,5 @@
 import 'package:farm_setu_demo/core/models/APIResponse.dart';
-import 'package:farm_setu_demo/features/weather_chart/data/models/climate.dart';
+import 'package:farm_setu_demo/features/weather_chart/domain/entities/climate.dart';
 
 import '../../../../core/usecases/usecase.dart';
 import '../repositories/weather_chart_repository.dart';
