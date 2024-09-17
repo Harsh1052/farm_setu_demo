@@ -1,11 +1,11 @@
-import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
+import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_cubit.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../dependencies_injection.dart';
 import '../../data/models/climate.dart';
-import '../bloc/climate_chart_events.dart';
 import '../custom_widgets/bar_chart.dart';
 import '../custom_widgets/climate_chart_widget.dart';
 
@@ -15,9 +15,8 @@ class ClimateDataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-
     return BlocProvider(
-      create: (context) => getIt<ClimateChartBloc>()..add(FetchClimateData('https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Tmax/date/UK.txt',false)),
+      create: (context) => getIt<ClimateChartCubit>()..fetchClimateData('https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Tmax/date/UK.txt',false),
         child: Scaffold(
           appBar: AppBar(
             title: const Text('England Climate Data'),
@@ -44,7 +43,7 @@ class ClimateDataPage extends StatelessWidget {
               })*/
             ],
           ),
-          body: BlocBuilder<ClimateChartBloc,ClimateChartState>(builder: (context, state) {
+          body: BlocBuilder<ClimateChartCubit,ClimateChartState>(builder: (context, state) {
             if (state is ClimateLoading) {
               return const Center(
                 child: CircularProgressIndicator(),

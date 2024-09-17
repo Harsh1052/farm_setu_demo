@@ -1,10 +1,11 @@
 import 'package:farm_setu_demo/dependencies_injection.dart';
-import 'package:farm_setu_demo/features/weather_chart/data/models/climate.dart';
-import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_bloc.dart';
-import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_events.dart';
+import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_cubit.dart';
 import 'package:farm_setu_demo/features/weather_chart/presentations/bloc/climate_chart_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../data/models/climate.dart';
 
 
 class TableViewScreen extends StatelessWidget {
@@ -13,10 +14,10 @@ class TableViewScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => getIt<ClimateChartBloc>()..add(FetchClimateData('https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Tmax/date/England.txt',true)),
+        create: (context) => getIt<ClimateChartCubit>()..fetchClimateData('https://www.metoffice.gov.uk/pub/data/weather/uk/climate/datasets/Tmax/date/UK.txt',true),
         child: Scaffold(
           appBar: AppBar(title: const Text('UK Climate Data')),
-          body: BlocBuilder<ClimateChartBloc,ClimateChartState>(
+          body: BlocBuilder<ClimateChartCubit,ClimateChartState>(
             builder: (context, state) {
               if(state is ClimateLoading){
                 return const Center(
