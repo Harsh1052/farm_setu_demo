@@ -10,7 +10,6 @@ import 'climate_chart_events.dart';
 import 'climate_chart_state.dart';
 
 class ClimateChartBloc extends Bloc<ClimateChartEvent, ClimateChartState> {
-  final APIs  apis = APIs();
   final GetWeatherChartData repository;
   ClimateChartBloc({required this.repository}) : super(ClimateLoading()) {
     on<ClimateChartEvent>((event, emit) async{

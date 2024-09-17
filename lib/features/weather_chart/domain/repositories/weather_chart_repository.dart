@@ -1,6 +1,6 @@
 import 'package:farm_setu_demo/core/models/APIResponse.dart';
 
-import '../../data/models/climate.dart';
+import '../entities/climate.dart';
 
 abstract class WeatherChartRepository {
   Future<APIResponse<List<ClimateData>>>

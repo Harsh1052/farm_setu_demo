@@ -5,7 +5,7 @@ import 'package:farm_setu_demo/features/weather_chart/data/datasources/climate_d
 
 import 'package:farm_setu_demo/features/weather_chart/domain/repositories/weather_chart_repository.dart';
 
-import '../../data/models/climate.dart';
+import '../../domain/entities/climate.dart';
 
 class WeatherChartRepositoryImpl implements WeatherChartRepository {
   final NetworkState networkState;

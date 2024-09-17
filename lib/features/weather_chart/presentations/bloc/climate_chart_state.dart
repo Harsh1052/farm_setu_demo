@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import '../../data/models/climate.dart';
+import '../../domain/entities/climate.dart';
 
 abstract class ClimateChartState extends Equatable {
 
